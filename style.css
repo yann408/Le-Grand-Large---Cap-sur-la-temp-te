@@ -1,0 +1,414 @@
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  font-family: Georgia, "Times New Roman", serif;
+  line-height: 1.7;
+  color: #dbe9f5;
+  background: linear-gradient(180deg, #08131f 0%, #0f2d4a 45%, #0a2038 100%);
+  background-attachment: fixed;
+  min-height: 100vh;
+  overflow-x: hidden;
+}
+
+/* ---------- PLUIE ---------- */
+.pluie {
+  position: fixed;
+  inset: -20%;
+  pointer-events: none;
+  z-index: 1;
+  transform: rotate(12deg);
+}
+
+.pluie::before,
+.pluie::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+}
+
+.pluie::before {
+  background: repeating-linear-gradient(
+    to right,
+    transparent 0 37px,
+    rgba(200, 225, 255, 0.35) 37px 38px,
+    transparent 38px 91px
+  );
+  -webkit-mask-image: repeating-linear-gradient(to bottom, #000 0 40px, transparent 40px 110px);
+  mask-image: repeating-linear-gradient(to bottom, #000 0 40px, transparent 40px 110px);
+  animation: tomber 0.7s linear infinite;
+}
+
+.pluie::after {
+  background: repeating-linear-gradient(
+    to right,
+    transparent 0 53px,
+    rgba(200, 225, 255, 0.25) 53px 54px,
+    transparent 54px 127px
+  );
+  -webkit-mask-image: repeating-linear-gradient(to bottom, #000 0 60px, transparent 60px 170px);
+  mask-image: repeating-linear-gradient(to bottom, #000 0 60px, transparent 60px 170px);
+  animation: tomber 0.5s linear infinite;
+}
+
+@keyframes tomber {
+  from { -webkit-mask-position: 0 0; mask-position: 0 0; }
+  to   { -webkit-mask-position: 0 170px; mask-position: 0 170px; }
+}
+
+/* ---------- ÉCLAIRS ---------- */
+.eclair {
+  position: fixed;
+  inset: 0;
+  background: #e8f3ff;
+  opacity: 0;
+  pointer-events: none;
+  z-index: 5;
+  animation: flash 8s infinite;
+}
+
+@keyframes flash {
+  0%, 90%, 100% { opacity: 0; }
+  91%   { opacity: 0.55; }
+  92%   { opacity: 0; }
+  93%   { opacity: 0.8; }
+  95%   { opacity: 0; }
+}
+
+/* ---------- EN-TÊTE ---------- */
+header {
+  position: sticky;
+  top: 0;
+  z-index: 10;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 16px 40px;
+  background-color: rgba(6, 18, 31, 0.85);
+  backdrop-filter: blur(6px);
+  border-bottom: 1px solid rgba(160, 200, 235, 0.2);
+}
+
+.logo {
+  font-size: 1.4rem;
+  font-weight: bold;
+  color: #f2d48a;
+  letter-spacing: 1px;
+}
+
+nav a {
+  color: #dbe9f5;
+  text-decoration: none;
+  margin-left: 24px;
+  padding-bottom: 4px;
+  border-bottom: 2px solid transparent;
+  transition: border-color 0.3s, color 0.3s;
+}
+
+nav a:hover {
+  color: #f2d48a;
+  border-bottom-color: #f2d48a;
+}
+
+/* ---------- BANDEAU ---------- */
+.hero {
+  position: relative;
+  z-index: 2;
+  text-align: center;
+  padding: 90px 20px 200px;
+  overflow: hidden;
+}
+
+.bateau {
+  font-size: 4.5rem;
+  display: inline-block;
+  animation: tangage 4s ease-in-out infinite;
+  filter: drop-shadow(0 8px 12px rgba(0, 0, 0, 0.5));
+}
+
+@keyframes tangage {
+  0%, 100% { transform: rotate(-12deg) translateY(0); }
+  50%      { transform: rotate(12deg) translateY(-14px); }
+}
+
+.hero h1 {
+  font-size: 3rem;
+  margin: 10px 0 15px;
+  color: #ffffff;
+  text-shadow: 0 0 20px rgba(120, 180, 255, 0.6), 0 4px 10px rgba(0, 0, 0, 0.6);
+}
+
+.hero p {
+  font-size: 1.2rem;
+  font-style: italic;
+  margin-bottom: 30px;
+}
+
+.bouton {
+  display: inline-block;
+  background-color: #f2d48a;
+  color: #08131f;
+  padding: 14px 34px;
+  border-radius: 50px;
+  text-decoration: none;
+  font-weight: bold;
+  transition: transform 0.2s, box-shadow 0.2s;
+}
+
+.bouton:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 8px 22px rgba(242, 212, 138, 0.4);
+}
+
+/* ---------- VAGUES ---------- */
+.vagues {
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  height: 160px;
+}
+
+.vague {
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1200 120' preserveAspectRatio='none'%3E%3Cpath d='M0,60 C150,110 350,10 600,60 C850,110 1050,10 1200,60 L1200,120 L0,120 Z' fill='%23123f66'/%3E%3C/svg%3E");
+  background-repeat: repeat-x;
+  background-size: 1200px 100%;
+}
+
+.v1 { height: 150px; opacity: 0.45; animation: houle 14s linear infinite; }
+.v2 { height: 110px; opacity: 0.7;  animation: houle 9s linear infinite reverse; }
+.v3 { height: 70px;  opacity: 1;    animation: houle 6s linear infinite; }
+
+@keyframes houle {
+  from { background-position-x: 0; }
+  to   { background-position-x: 1200px; }
+}
+
+/* ---------- CONTENU ---------- */
+main {
+  position: relative;
+  z-index: 2;
+  max-width: 1000px;
+  margin: 0 auto;
+  padding: 40px 20px 60px;
+}
+
+section {
+  margin-bottom: 60px;
+}
+
+h2 {
+  text-align: center;
+  font-size: 2rem;
+  color: #f2d48a;
+  margin-bottom: 25px;
+  letter-spacing: 1px;
+}
+
+.intro {
+  max-width: 700px;
+  margin: 0 auto 30px;
+  text-align: center;
+  font-size: 1.15rem;
+}
+
+blockquote {
+  max-width: 650px;
+  margin: 0 auto;
+  padding: 25px 30px;
+  background-color: rgba(8, 24, 42, 0.75);
+  border-left: 5px solid #f2d48a;
+  border-radius: 6px;
+  font-style: italic;
+  font-size: 1.15rem;
+}
+
+.mention {
+  text-align: center;
+  font-size: 0.9rem;
+  color: #9db8d0;
+  margin-top: 20px;
+}
+
+/* ---------- GUIDE ÉTAPE PAR ÉTAPE ---------- */
+.etapes {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.etape {
+  display: flex;
+  gap: 20px;
+  align-items: flex-start;
+  padding: 24px;
+  background-color: rgba(8, 24, 42, 0.75);
+  border: 1px solid rgba(160, 200, 235, 0.25);
+  border-left: 5px solid #f2d48a;
+  border-radius: 12px;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.45);
+  transition: transform 0.3s;
+}
+
+.etape:hover {
+  transform: translateX(6px);
+}
+
+.numero {
+  flex-shrink: 0;
+  width: 48px;
+  height: 48px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  background-color: #f2d48a;
+  color: #08131f;
+  font-size: 1.4rem;
+  font-weight: bold;
+}
+
+.etape h3 {
+  color: #8fc7ff;
+  margin-bottom: 6px;
+}
+
+/* Checklist */
+.checklist {
+  list-style: none;
+  margin-top: 12px;
+}
+
+.checklist li {
+  margin: 6px 0;
+}
+
+.checklist label {
+  cursor: pointer;
+}
+
+.checklist input {
+  margin-right: 10px;
+  accent-color: #f2d48a;
+  transform: scale(1.2);
+}
+
+/* ---------- HOMME À LA MER ---------- */
+.urgence {
+  max-width: 750px;
+  margin: 0 auto;
+  padding: 28px 32px;
+  background-color: rgba(70, 12, 12, 0.6);
+  border: 2px solid #e05252;
+  border-radius: 12px;
+  box-shadow: 0 0 24px rgba(224, 82, 82, 0.35);
+}
+
+.urgence ol {
+  margin: 15px 0 0 22px;
+}
+
+.urgence li {
+  margin-bottom: 10px;
+}
+
+.urgence strong {
+  color: #ff9d9d;
+}
+
+/* ---------- ALERTE PIRATES ---------- */
+#pirates h2 {
+  color: #e8c26a;
+  text-shadow: 0 0 14px rgba(0, 0, 0, 0.8);
+}
+
+.etape-pirate {
+  background-color: rgba(10, 10, 16, 0.82);
+  border: 1px solid rgba(200, 170, 100, 0.3);
+  border-left: 5px solid #b8860b;
+}
+
+.etape-pirate:hover {
+  transform: translateX(6px) rotate(-0.3deg);
+}
+
+.etape-pirate .numero {
+  background-color: #b8860b;
+  color: #0a0a10;
+}
+
+.etape-pirate h3 {
+  color: #e8c26a;
+}
+
+.liste-alerte {
+  margin: 12px 0 0 22px;
+}
+
+.liste-alerte li {
+  margin-bottom: 8px;
+}
+
+.alerte-pirate {
+  max-width: 750px;
+  margin: 30px auto 0;
+  padding: 20px 28px;
+  text-align: center;
+  background-color: rgba(70, 12, 12, 0.6);
+  border: 2px solid #e05252;
+  border-radius: 12px;
+  box-shadow: 0 0 24px rgba(224, 82, 82, 0.35);
+}
+
+.alerte-pirate strong {
+  color: #ff9d9d;
+}
+
+/* ---------- PIED DE PAGE ---------- */
+footer {
+  position: relative;
+  z-index: 2;
+  text-align: center;
+  padding: 25px;
+  background-color: #050e18;
+  color: #9db8d0;
+}
+
+/* ---------- ÉCRANS ÉTROITS ---------- */
+@media (max-width: 600px) {
+  header {
+    flex-direction: column;
+    gap: 10px;
+  }
+  nav {
+    text-align: center;
+  }
+  nav a {
+    margin: 0 8px;
+    font-size: 0.9rem;
+  }
+  .etape {
+    flex-direction: column;
+  }
+  .hero h1 {
+    font-size: 2.2rem;
+  }
+}
+
+/* Accessibilité : coupe les animations si l'utilisateur le demande */
+@media (prefers-reduced-motion: reduce) {
+  .pluie, .eclair, .bateau, .vague {
+    animation: none;
+  }
+}
