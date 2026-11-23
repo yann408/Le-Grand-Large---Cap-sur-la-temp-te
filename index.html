@@ -373,5 +373,38 @@
     <p>© 2026 – Le Grand Large · Cap sur la tempête</p>
   </footer>
 
+   <!-- Musique d'ambiance -->
+  <audio id="musique" loop preload="none">
+    <source src="musique.mp3" type="audio/mpeg">
+  </audio>
+
+  <button id="btn-musique" class="btn-musique" aria-label="Activer la musique d'ambiance">
+    🎵 Musique
+  </button>
+
+  <script>
+    const musique = document.getElementById("musique");
+    const bouton = document.getElementById("btn-musique");
+
+    musique.volume = 0.4; // volume doux (de 0 à 1)
+
+    bouton.addEventListener("click", () => {
+      if (musique.paused) {
+        musique.play()
+          .then(() => {
+            bouton.textContent = "🔇 Couper";
+            bouton.classList.add("actif");
+          })
+          .catch(() => {
+            bouton.textContent = "⚠️ Fichier introuvable";
+          });
+      } else {
+        musique.pause();
+        bouton.textContent = "🎵 Musique";
+        bouton.classList.remove("actif");
+      }
+    });
+  </script>
+
 </body>
 </html>
