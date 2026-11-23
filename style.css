@@ -233,6 +233,9 @@ blockquote {
   font-style: italic;
   font-size: 1.15rem;
 }
+blockquote + blockquote {
+  margin-top: 20px;
+}
 
 .mention {
   text-align: center;
