@@ -415,3 +415,93 @@ footer {
     animation: none;
   }
 }
+
+/* ---------- CHANT DES SIRÈNES ---------- */
+#sirenes h2 {
+  color: #7fe5d6;
+  text-shadow: 0 0 16px rgba(127, 229, 214, 0.5);
+}
+
+.etape-sirene {
+  background-color: rgba(10, 36, 52, 0.8);
+  border: 1px solid rgba(127, 229, 214, 0.3);
+  border-left: 5px solid #4fd1c5;
+}
+
+.etape-sirene:hover {
+  transform: translateX(6px);
+  box-shadow: 0 8px 28px rgba(79, 209, 197, 0.3);
+}
+
+.etape-sirene .numero {
+  background: linear-gradient(135deg, #4fd1c5, #9f7aea);
+  color: #08131f;
+}
+
+.etape-sirene h3 {
+  color: #7fe5d6;
+}
+
+.etape-sirene .checklist input {
+  accent-color: #4fd1c5;
+}
+
+.alerte-sirene {
+  max-width: 750px;
+  margin: 30px auto 0;
+  padding: 20px 28px;
+  text-align: center;
+  background-color: rgba(60, 30, 90, 0.55);
+  border: 2px solid #9f7aea;
+  border-radius: 12px;
+  box-shadow: 0 0 24px rgba(159, 122, 234, 0.4);
+}
+
+.alerte-sirene strong {
+  color: #d6bcfa;
+}
+
+/* ---------- INVITÉS DE MARQUE ---------- */
+#invites h2 {
+  color: #f0d9a0;
+  text-shadow: 0 0 16px rgba(240, 217, 160, 0.4);
+}
+
+.etape-invite {
+  background-color: rgba(48, 12, 24, 0.82);
+  border: 1px solid rgba(240, 217, 160, 0.3);
+  border-left: 5px solid #c9a24d;
+}
+
+.etape-invite:hover {
+  transform: translateX(6px);
+  box-shadow: 0 8px 28px rgba(201, 162, 77, 0.3);
+}
+
+.etape-invite .numero {
+  background: linear-gradient(135deg, #c9a24d, #8c1c3a);
+  color: #fff6dc;
+}
+
+.etape-invite h3 {
+  color: #f0d9a0;
+}
+
+.etape-invite .checklist input {
+  accent-color: #c9a24d;
+}
+
+.alerte-invite {
+  max-width: 750px;
+  margin: 30px auto 0;
+  padding: 20px 28px;
+  text-align: center;
+  background-color: rgba(88, 18, 40, 0.6);
+  border: 2px solid #c9a24d;
+  border-radius: 12px;
+  box-shadow: 0 0 24px rgba(201, 162, 77, 0.35);
+}
+
+.alerte-invite strong {
+  color: #f0d9a0;
+}
